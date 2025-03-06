@@ -1,32 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore - TravelGram</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
-</head>
-<body>
-    <header>
-        <div class="logo">TravelGram</div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="explore.html" class="active">Explore</a></li>
-                <li><a href="upload.html">Upload</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="login.html">Logout</a></li>
-            </ul>
-        </nav>
-    </header>
+document.addEventListener("DOMContentLoaded", function () {
+    const gallery = document.querySelector(".gallery");
 
-    <main class="explore-container">
-        <h2>Explore Beautiful Travel Moments</h2>
-        <div class="gallery">
-            <!-- Images will be loaded dynamically here -->
-        </div>
-    </main>
+    // Dummy images for now (You can replace these with uploaded user images later)
+    const travelImages = [
+        "assets/images/travel1.jpg",
+        "assets/images/travel2.jpg",
+        "assets/images/travel3.jpg",
+        "assets/images/travel4.jpg",
+        "assets/images/travel5.jpg"
+    ];
 
-    <script src="assets/js/explore.js"></script>
-</body>
-</html>
+    // Display images in gallery
+    travelImages.forEach(image => {
+        const imgElement = document.createElement("img");
+        imgElement.src = image;
+        imgElement.alt = "Travel Photo";
+        gallery.appendChild(imgElement);
+    });
+});
