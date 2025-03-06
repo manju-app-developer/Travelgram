@@ -3,71 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelShare - Explore & Share Travel Photos</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <script defer src="scripts/main.js"></script>
+    <title>TravelGram - Explore Travel Photos</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-
-    <!-- 🌍 Header Section -->
     <header>
-        <h1>TravelShare</h1>
+        <h1>TravelGram</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="#explore">Explore</a></li>
-                <li><a href="#upload">Upload</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="upload.html">Upload</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="login.html" class="btn">Login</a></li>
             </ul>
         </nav>
-        <div class="auth-buttons">
-            <a href="login.html" class="btn">Login</a>
-            <a href="register.html" class="btn">Register</a>
-        </div>
-        <button id="dark-mode-toggle">🌙</button>
     </header>
 
-    <!-- 🎯 Hero Section -->
-    <section id="home" class="hero">
-        <h2>Discover & Share Stunning Travel Photos</h2>
-        <p>Join a community of travelers and photographers capturing the world's beauty.</p>
-        <a href="register.html" class="btn">Join Now</a>
-    </section>
-
-    <!-- 🌟 Featured Destinations -->
-    <section id="explore" class="destination-grid">
-        <h2>Explore Popular Destinations</h2>
-        <div class="destination">
-            <img src="images/paris.jpg" alt="Paris, France">
-            <h3>Paris, France</h3>
-        </div>
-        <div class="destination">
-            <img src="images/bali.jpg" alt="Bali, Indonesia">
-            <h3>Bali, Indonesia</h3>
-        </div>
-        <div class="destination">
-            <img src="images/santorini.jpg" alt="Santorini, Greece">
-            <h3>Santorini, Greece</h3>
+    <section class="trending">
+        <h2>Trending Travel Photos</h2>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="assets/images/photo1.jpg" alt="Travel Photo">
+                <p>Beautiful Beach in Bali</p>
+            </div>
+            <div class="photo-card">
+                <img src="assets/images/photo2.jpg" alt="Travel Photo">
+                <p>Snowy Mountains in Switzerland</p>
+            </div>
+            <div class="photo-card">
+                <img src="assets/images/photo3.jpg" alt="Travel Photo">
+                <p>Tokyo at Night</p>
+            </div>
         </div>
     </section>
-
-    <!-- 🚀 Upload Section -->
-    <section id="upload">
-        <h2>Share Your Travel Moments</h2>
-        <p>Upload and showcase your best travel experiences.</p>
-        <a href="login.html" class="btn">Upload Now</a>
-    </section>
-
-    <!-- ℹ️ About Section -->
-    <section id="about">
-        <h2>About TravelShare</h2>
-        <p>TravelShare is the ultimate platform for travelers and photographers to share their journeys.</p>
-    </section>
-
-    <!-- 🔽 Footer -->
-    <footer>
-        <p>&copy; 2025 TravelShare | All Rights Reserved.</p>
-    </footer>
-
 </body>
 </html>
