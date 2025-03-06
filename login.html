@@ -3,29 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - TravelShare</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <title>Login | TravelGram</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-
-    <!-- 🌍 Login Container -->
-    <div class="auth-container">
-        <h2>Login to TravelShare</h2>
-        <form action="dashboard.html" method="POST">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required placeholder="Enter your email">
-            
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required placeholder="Enter your password">
-            
-            <button type="submit" class="btn">Login</button>
+    <div class="login-container">
+        <h2>TravelGram</h2>
+        <form action="profile.html" method="POST">
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
         </form>
-        
-        <div class="auth-links">
-            <a href="#">Forgot Password?</a>
-            <p>Don't have an account? <a href="register.html">Register here</a></p>
-        </div>
+        <p>Don't have an account? <a href="register.html">Sign up</a></p>
     </div>
-
 </body>
 </html>
