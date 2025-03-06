@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TravelGram - Explore Travel Photos</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>TravelGram</h1>
+        <h1 class="logo">TravelGram</h1>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="explore.html">Explore</a></li>
                 <li><a href="upload.html">Upload</a></li>
                 <li><a href="profile.html">Profile</a></li>
@@ -20,22 +21,41 @@
         </nav>
     </header>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Discover & Share Breathtaking Travel Moments</h2>
+        <p>Join our community and showcase your best travel photos to the world.</p>
+        <a href="upload.html" class="btn primary">Upload Your Photo</a>
+    </section>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" placeholder="Search travel destinations...">
+        <button>Search</button>
+    </div>
+
+    <!-- Trending Photos -->
     <section class="trending">
         <h2>Trending Travel Photos</h2>
         <div class="photo-grid">
             <div class="photo-card">
-                <img src="photo1.jpg" alt="Travel Photo">
+                <img src="assets/images/photo1.jpg" alt="Beach in Bali">
                 <p>Beautiful Beach in Bali</p>
             </div>
             <div class="photo-card">
-                <img src="photo2.jpg" alt="Travel Photo">
+                <img src="assets/images/photo2.jpg" alt="Switzerland Mountains">
                 <p>Snowy Mountains in Switzerland</p>
             </div>
             <div class="photo-card">
-                <img src="photo3.jpg" alt="Travel Photo">
+                <img src="assets/images/photo3.jpg" alt="Tokyo at Night">
                 <p>Tokyo at Night</p>
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 TravelGram. All rights reserved.</p>
+    </footer>
 </body>
 </html>
