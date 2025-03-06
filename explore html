@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore | TravelGram</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>TravelGram</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="upload.html">Upload</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="explore">
+        <h2>Discover New Destinations</h2>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="assets/images/explore1.jpg" alt="Destination">
+                <p>Santorini, Greece</p>
+            </div>
+            <div class="photo-card">
+                <img src="assets/images/explore2.jpg" alt="Destination">
+                <p>Grand Canyon, USA</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
