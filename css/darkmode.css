@@ -1,0 +1,132 @@
+/* ======= ADVANCED DARK MODE STYLES ======= */
+body.dark-mode {
+    background: #121212;
+    color: #e0e0e0;
+    transition: background 0.4s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* ======= DARK MODE NAVBAR ======= */
+.navbar.dark-mode {
+    background: rgba(20, 20, 20, 0.95);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
+}
+
+.navbar.dark-mode a {
+    color: #fff;
+    transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+.navbar.dark-mode a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+/* ======= DARK MODE BUTTONS ======= */
+.btn-primary.dark-mode {
+    background: #ff9800;
+    color: white;
+    box-shadow: 2px 4px 10px rgba(255, 152, 0, 0.4);
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.btn-primary.dark-mode:hover {
+    background: #e68900;
+    transform: translateY(-2px);
+    box-shadow: 3px 5px 12px rgba(255, 152, 0, 0.6);
+}
+
+.btn-secondary.dark-mode {
+    background: #009688;
+    color: white;
+    box-shadow: 2px 4px 10px rgba(0, 150, 136, 0.4);
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.btn-secondary.dark-mode:hover {
+    background: #008577;
+    transform: translateY(-2px);
+    box-shadow: 3px 5px 12px rgba(0, 150, 136, 0.6);
+}
+
+/* ======= DARK MODE FORMS & INPUT FIELDS ======= */
+form.dark-mode {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+input.dark-mode, textarea.dark-mode {
+    background: #2a2a2a;
+    color: #e0e0e0;
+    border: 1px solid #555;
+    padding: 12px;
+    border-radius: 8px;
+    transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+input.dark-mode:focus, textarea.dark-mode:focus {
+    border-color: #ff9800;
+    box-shadow: 0px 4px 8px rgba(255, 152, 0, 0.4);
+    outline: none;
+}
+
+/* ======= DARK MODE CARDS ======= */
+.card.dark-mode {
+    background: #1a1a1a;
+    color: #e0e0e0;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card.dark-mode:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 6px 14px rgba(255, 255, 255, 0.12);
+}
+
+/* ======= DARK MODE TABLE ======= */
+table.dark-mode {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1c1c1c;
+    color: #e0e0e0;
+}
+
+table.dark-mode th, table.dark-mode td {
+    padding: 12px;
+    border: 1px solid #444;
+}
+
+table.dark-mode th {
+    background: #252525;
+    color: #ff9800;
+}
+
+/* ======= DARK MODE FOOTER ======= */
+.footer.dark-mode {
+    background: #181818;
+    color: #ccc;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 -4px 10px rgba(255, 255, 255, 0.05);
+}
+
+/* ======= DARK MODE TOGGLE SWITCH ======= */
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: #ff9800;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.dark-mode-toggle:hover {
+    color: #e68900;
+    transform: scale(1.1);
+}
