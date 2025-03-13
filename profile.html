@@ -3,35 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Profile | TravelGram</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>TravelGram</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="explore.html">Explore</a></li>
-                <li><a href="upload.html">Upload</a></li>
-                <li><a href="profile.html">Profile</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="container">
+        <div class="profile-header">
+            <h2>User Profile</h2>
+            <button id="themeToggle">🌙</button> <!-- Dark/Light Mode Toggle -->
+        </div>
+        
+        <div class="profile-card">
+            <label for="profilePicUpload">
+                <img id="profilePic" src="default.png" alt="Profile Picture" width="120">
+            </label>
+            <input type="file" id="profilePicUpload" accept="image/*" style="display: none;">
 
-    <section class="profile">
-        <h2>My Profile</h2>
-        <div class="user-info">
-            <img src="assets/images/user.jpg" alt="User Profile">
-            <p>@username</p>
+            <p><strong>Name:</strong> <span id="userName">Loading...</span></p>
+            <input type="text" id="editName" placeholder="Enter new name" style="display:none;">
+            <button id="editNameBtn">Edit Name</button>
+
+            <p><strong>Email:</strong> <span id="userEmail">Loading...</span></p>
+
+            <button id="logout">Logout</button>
         </div>
-        <h3>My Travel Photos</h3>
-        <div class="photo-grid">
-            <div class="photo-card">
-                <img src="assets/images/myphoto1.jpg" alt="My Travel">
-                <p>Paris, France</p>
-            </div>
-        </div>
-    </section>
+    </div>
+
+    <script type="module" src="js/profile.js"></script>
+    <script>
+        // Dark Mode Toggle
+        document.getElementById("themeToggle").addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+        });
+
+        // Load Theme from Local Storage
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+        }
+    </script>
 </body>
 </html>
