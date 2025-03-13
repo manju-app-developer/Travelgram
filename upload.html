@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced File Upload</title>
+    <title>Upload File</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
         <h2>Upload Your File</h2>
         
-        <div id="dropZone" class="drop-zone">
-            <p>Drag & Drop your file here or click to select</p>
-            <input type="file" id="fileInput" hidden>
-        </div>
+        <label for="fileInput" class="file-label">Choose a file:</label>
+        <input type="file" id="fileInput" class="file-input" accept="image/*, video/*, application/pdf">
 
         <div id="fileDetails" class="hidden">
             <p><strong>File:</strong> <span id="fileName"></span></p>
@@ -21,7 +19,7 @@
             <p><strong>Type:</strong> <span id="fileType"></span></p>
         </div>
 
-        <progress id="progressBar" value="0" max="100"></progress>
+        <progress id="progressBar" value="0" max="100" class="hidden"></progress>
         <img id="preview" class="hidden" width="150">
         <p id="statusMessage"></p>
 
