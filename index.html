@@ -9,56 +9,109 @@
     <script src="js/script.js" defer></script>
 </head>
 <body>
+
     <!-- Navbar -->
     <header>
         <nav class="navbar">
-            <div class="logo">Travelgram</div>
+            <div class="logo">🌍 Travelgram</div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search destinations..." id="searchInput">
+                <button id="searchBtn">🔍</button>
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="upload.html">Upload</a></li>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="login.html">Login</a></li>
                 <li><button id="darkModeToggle">🌙</button></li>
+                <li class="profile-dropdown">
+                    <img src="images/profile-icon.png" alt="Profile" class="profile-icon">
+                    <ul class="dropdown-menu">
+                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="signup.html">Sign Up</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Slideshow -->
     <section class="hero">
+        <div class="slideshow">
+            <img src="images/travel1.jpg" class="slide active">
+            <img src="images/travel2.jpg" class="slide">
+            <img src="images/travel3.jpg" class="slide">
+        </div>
         <div class="hero-content">
             <h1>Discover & Share Your Travel Stories</h1>
-            <p>Join Travelgram to explore breathtaking destinations and connect with travelers worldwide.</p>
+            <p>Explore breathtaking destinations, connect with travelers, and share your journey.</p>
             <a href="upload.html" class="btn">Upload Your Story</a>
         </div>
     </section>
 
     <!-- Featured Travel Posts -->
     <section class="featured-posts">
-        <h2>Featured Travel Stories</h2>
+        <h2>🌟 Featured Travel Stories</h2>
         <div class="posts-container">
             <div class="post-card">
-                <img src="https://source.unsplash.com/400x250/?beach" alt="Beautiful Beach Getaway">
+                <img src="images/beach.jpg" alt="Beautiful Beach Getaway">
                 <div class="post-info">
                     <h3>Beautiful Beach Getaway</h3>
                     <p>Experience the serenity of the Maldives.</p>
                     <button class="like-btn">❤️ Like</button>
+                    <button class="bookmark-btn">🔖 Save</button>
                 </div>
             </div>
             <div class="post-card">
-                <img src="https://source.unsplash.com/400x250/?hiking" alt="Hiking Adventures">
+                <img src="images/mountains.jpg" alt="Hiking Adventures">
                 <div class="post-info">
                     <h3>Hiking Adventures</h3>
-                    <p>Explore the scenic beauty of Kappat Hills, Gadag.</p>
+                    <p>Explore the breathtaking peaks of the Swiss Alps.</p>
                     <button class="like-btn">❤️ Like</button>
+                    <button class="bookmark-btn">🔖 Save</button>
                 </div>
             </div>
             <div class="post-card">
-                <img src="https://source.unsplash.com/400x250/?city" alt="City Lights & Urban Vibes">
+                <img src="images/city.jpg" alt="City Lights & Urban Vibes">
                 <div class="post-info">
                     <h3>City Lights & Urban Vibes</h3>
-                    <p>Unleash the magic of New York City.</p>
+                    <p>Unleash the magic of Tokyo nightlife.</p>
                     <button class="like-btn">❤️ Like</button>
+                    <button class="bookmark-btn">🔖 Save</button>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Destinations -->
+    <section class="trending">
+        <h2>🔥 Trending Destinations</h2>
+        <div class="trending-container">
+            <div class="trend-card">
+                <img src="images/paris.jpg" alt="Paris">
+                <h3>Paris, France</h3>
+            </div>
+            <div class="trend-card">
+                <img src="images/bali.jpg" alt="Bali">
+                <h3>Bali, Indonesia</h3>
+            </div>
+            <div class="trend-card">
+                <img src="images/dubai.jpg" alt="Dubai">
+                <h3>Dubai, UAE</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Testimonials -->
+    <section class="testimonials">
+        <h2>💬 What Travelers Say</h2>
+        <div class="testimonial-container">
+            <div class="testimonial-card">
+                <p>"Travelgram made my trip planning so much easier! Loved the community engagement."</p>
+                <h4>- Sarah M.</h4>
+            </div>
+            <div class="testimonial-card">
+                <p>"I discovered hidden gems through Travelgram that I wouldn't have found anywhere else."</p>
+                <h4>- Daniel K.</h4>
             </div>
         </div>
     </section>
@@ -67,5 +120,6 @@
     <footer>
         <p>&copy; 2025 Travelgram | Built for explorers 🌍</p>
     </footer>
+
 </body>
 </html>
