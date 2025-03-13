@@ -1,8 +1,8 @@
-/* ======= Super Advanced Global Styles ======= */
+/* ======= Super Advanced Styles Inspired by Instagram & Twitter ======= */
 :root {
     --primary-color: #e1306c; /* Instagram pink */
     --secondary-color: #fdc830; /* Yellowish */
-    --accent-color: #0d6efd; /* Blue for contrast */
+    --accent-color: #0d6efd; /* Twitter blue */
     --bg-light: #f8f9fa;
     --bg-dark: #121212;
     --glass-bg: rgba(255, 255, 255, 0.15);
