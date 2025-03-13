@@ -1,33 +1,117 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload File</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <div class="container">
-        <h2>Upload Your File</h2>
-        
-        <label for="fileInput" class="file-label">Choose a file:</label>
-        <input type="file" id="fileInput" class="file-input" accept="image/*, video/*, application/pdf">
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+import { app } from "../firebase/firebase-config.js";
 
-        <div id="fileDetails" class="hidden">
-            <p><strong>File:</strong> <span id="fileName"></span></p>
-            <p><strong>Size:</strong> <span id="fileSize"></span></p>
-            <p><strong>Type:</strong> <span id="fileType"></span></p>
-        </div>
+const auth = getAuth(app);
+const storage = getStorage(app);
 
-        <progress id="progressBar" value="0" max="100" class="hidden"></progress>
-        <img id="preview" class="hidden" width="150">
-        <p id="statusMessage"></p>
+document.addEventListener("DOMContentLoaded", () => {
+    const fileInput = document.getElementById("fileInput");
+    const fileName = document.getElementById("fileName");
+    const fileSize = document.getElementById("fileSize");
+    const fileType = document.getElementById("fileType");
+    const fileDetails = document.getElementById("fileDetails");
 
-        <button id="uploadBtn" disabled>Upload</button>
-        <button id="cancelBtn" class="hidden">Cancel</button>
-        <button id="logout">Logout</button>
-    </div>
+    const uploadBtn = document.getElementById("uploadBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const progressBar = document.getElementById("progressBar");
+    const statusMessage = document.getElementById("statusMessage");
 
-    <script type="module" src="js/upload.js"></script>
-</body>
-</html>
+    const imagePreview = document.getElementById("imagePreview");
+    const videoPreview = document.getElementById("videoPreview");
+    const pdfPreview = document.getElementById("pdfPreview");
+    const previewContainer = document.getElementById("previewContainer");
+
+    let uploadTask = null;
+
+    // === Authentication Check ===
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            window.location.href = "login.html";
+        }
+    });
+
+    fileInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+
+        if (file) {
+            fileName.textContent = file.name;
+            fileSize.textContent = (file.size / 1024 / 1024).toFixed(2) + " MB";
+            fileType.textContent = file.type;
+            fileDetails.classList.remove("hidden");
+
+            // File Preview Handling
+            previewContainer.classList.remove("hidden");
+            imagePreview.classList.add("hidden");
+            videoPreview.classList.add("hidden");
+            pdfPreview.classList.add("hidden");
+
+            const fileURL = URL.createObjectURL(file);
+            if (file.type.startsWith("image/")) {
+                imagePreview.src = fileURL;
+                imagePreview.classList.remove("hidden");
+            } else if (file.type.startsWith("video/")) {
+                videoPreview.src = fileURL;
+                videoPreview.classList.remove("hidden");
+            } else if (file.type === "application/pdf") {
+                pdfPreview.src = fileURL;
+                pdfPreview.classList.remove("hidden");
+            }
+
+            uploadBtn.disabled = false;
+        }
+    });
+
+    uploadBtn.addEventListener("click", () => {
+        const file = fileInput.files[0];
+        if (!file) return;
+
+        const storageRef = ref(storage, `uploads/${auth.currentUser.uid}/${file.name}`);
+        uploadTask = uploadBytesResumable(storageRef, file);
+
+        progressBar.classList.remove("hidden");
+        cancelBtn.classList.remove("hidden");
+        statusMessage.textContent = "Uploading...";
+
+        uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                progressBar.value = progress;
+            },
+            (error) => {
+                console.error("Upload error:", error.message);
+                statusMessage.textContent = "Upload failed!";
+                progressBar.classList.add("hidden");
+                cancelBtn.classList.add("hidden");
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    console.log("File available at:", downloadURL);
+                    statusMessage.innerHTML = `Upload complete! <a href="${downloadURL}" target="_blank">View File</a>`;
+                    progressBar.classList.add("hidden");
+                    cancelBtn.classList.add("hidden");
+                });
+            }
+        );
+    });
+
+    cancelBtn.addEventListener("click", () => {
+        if (uploadTask) {
+            uploadTask.cancel();
+            statusMessage.textContent = "Upload canceled.";
+            progressBar.classList.add("hidden");
+            cancelBtn.classList.add("hidden");
+        }
+    });
+
+    document.getElementById("logout").addEventListener("click", async () => {
+        try {
+            await signOut(auth);
+            window.location.href = "login.html";
+        } catch (error) {
+            console.error("Logout Error:", error.message);
+            alert("Error logging out. Please try again.");
+        }
+    });
+});
