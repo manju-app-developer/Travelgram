@@ -8,7 +8,8 @@
 </head>
 <body>
     <div class="container">
-        <h2>Signup</h2>
+        <h2>Create Your Account</h2>
+        
         <form id="signupForm">
             <label for="signupEmail">Email</label>
             <input type="email" id="signupEmail" placeholder="Enter your email" required autocomplete="email">
@@ -16,26 +17,53 @@
             <label for="signupPassword">Password</label>
             <input type="password" id="signupPassword" placeholder="Enter your password" required autocomplete="new-password">
             
-            <p id="errorMessage" class="error-message"></p> <!-- Error Display Here -->
+            <label for="signupConfirmPassword">Confirm Password</label>
+            <input type="password" id="signupConfirmPassword" placeholder="Confirm your password" required autocomplete="new-password">
             
+            <p id="errorMessage" class="error-message"></p> <!-- Error Display -->
+
             <button type="submit">Sign Up</button>
         </form>
+
         <p>Already have an account? <a href="login.html">Login</a></p>
+        
+        <hr>
+        
+        <button id="googleSignup" class="google-btn">Sign Up with Google</button> <!-- Google Sign-Up -->
     </div>
 
     <script type="module" src="js/auth.js"></script>
     <script>
         document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            const email = document.getElementById("signupEmail").value.trim();
             const password = document.getElementById("signupPassword").value;
+            const confirmPassword = document.getElementById("signupConfirmPassword").value;
             const errorMessage = document.getElementById("errorMessage");
 
+            if (!email.includes("@") || !email.includes(".")) {
+                errorMessage.textContent = "Please enter a valid email address.";
+                return;
+            }
+
             if (password.length < 6) {
-                event.preventDefault(); // Stop form submission
-                errorMessage.textContent = "Password must be at least 6 characters.";
+                errorMessage.textContent = "Password must be at least 6 characters long.";
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                errorMessage.textContent = "Passwords do not match.";
                 return;
             }
 
             errorMessage.textContent = ""; // Clear errors if valid
+            document.getElementById("signupForm").submit(); // Submit form if valid
+        });
+
+        // Google Sign-Up Button Click
+        document.getElementById("googleSignup").addEventListener("click", function() {
+            import('./js/auth.js').then(module => module.googleSignUp());
         });
     </script>
 </body>
