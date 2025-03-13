@@ -43,6 +43,21 @@ scrollTopBtn?.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+// ======== IMAGE SLIDESHOW ===========
+const slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+    });
+}
+
+setInterval(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}, 3000); // Auto-slide every 3 seconds
+
 // ======== LIKE BUTTON (INSTAGRAM STYLE) ===========
 document.querySelectorAll(".like-btn").forEach(button => {
     button.addEventListener("click", () => {
@@ -53,6 +68,37 @@ document.querySelectorAll(".like-btn").forEach(button => {
             ? '<span class="heart-animation">❤️</span> Liked' 
             : '🤍 Like';
     });
+});
+
+// ======== BOOKMARK BUTTON ===========
+document.querySelectorAll(".bookmark-btn").forEach(button => {
+    button.addEventListener("click", () => {
+        button.classList.toggle("bookmarked");
+        button.textContent = button.classList.contains("bookmarked") ? "✅ Saved" : "🔖 Save";
+    });
+});
+
+// ======== FETCH LOCAL IMAGES DYNAMICALLY ===========
+const imagesFolder = "images/";
+const localImages = [
+    "hero1.jpg", "hero2.jpg", "hero3.jpg", // Replace with actual image filenames
+    "beach.jpg", "mountains.jpg", "city.jpg",
+    "paris.jpg", "bali.jpg", "dubai.jpg"
+];
+
+// Replace hero section images dynamically
+document.querySelectorAll(".slide").forEach((img, index) => {
+    if (localImages[index]) img.src = imagesFolder + localImages[index];
+});
+
+// Replace featured post images dynamically
+document.querySelectorAll(".post-card img").forEach((img, index) => {
+    if (localImages[index + 3]) img.src = imagesFolder + localImages[index + 3];
+});
+
+// Replace trending destination images dynamically
+document.querySelectorAll(".trend-card img").forEach((img, index) => {
+    if (localImages[index + 6]) img.src = imagesFolder + localImages[index + 6];
 });
 
 // ======== INSTAGRAM-STYLE UPLOAD WITH PREVIEW ===========
