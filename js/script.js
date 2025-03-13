@@ -78,28 +78,45 @@ document.querySelectorAll(".bookmark-btn").forEach(button => {
     });
 });
 
-// ======== FETCH LOCAL IMAGES DYNAMICALLY ===========
-const imagesFolder = "images/";
-const localImages = [
-    "hero1.jpg", "hero2.jpg", "hero3.jpg", // Replace with actual image filenames
-    "beach.jpg", "mountains.jpg", "city.jpg",
-    "paris.jpg", "bali.jpg", "dubai.jpg"
-];
+// ======== LOGIN FUNCTION ===========
+const loginForm = document.getElementById("loginForm");
+const profileSection = document.getElementById("profileSection");
+const usernameDisplay = document.getElementById("usernameDisplay");
+const logoutBtn = document.getElementById("logoutBtn");
 
-// Replace hero section images dynamically
-document.querySelectorAll(".slide").forEach((img, index) => {
-    if (localImages[index]) img.src = imagesFolder + localImages[index];
+loginForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    if (username && password) {
+        localStorage.setItem("user", JSON.stringify({ username }));
+        updateProfileUI();
+        alert("Login Successful!");
+    } else {
+        alert("Please enter valid credentials!");
+    }
 });
 
-// Replace featured post images dynamically
-document.querySelectorAll(".post-card img").forEach((img, index) => {
-    if (localImages[index + 3]) img.src = imagesFolder + localImages[index + 3];
+// ======== UPDATE PROFILE AFTER LOGIN ===========
+function updateProfileUI() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+        profileSection.classList.remove("hidden");
+        usernameDisplay.textContent = user.username;
+        loginForm.classList.add("hidden");
+    }
+}
+
+// ======== LOGOUT FUNCTION ===========
+logoutBtn?.addEventListener("click", () => {
+    localStorage.removeItem("user");
+    profileSection.classList.add("hidden");
+    loginForm.classList.remove("hidden");
 });
 
-// Replace trending destination images dynamically
-document.querySelectorAll(".trend-card img").forEach((img, index) => {
-    if (localImages[index + 6]) img.src = imagesFolder + localImages[index + 6];
-});
+// Auto-update profile UI if user is already logged in
+updateProfileUI();
 
 // ======== INSTAGRAM-STYLE UPLOAD WITH PREVIEW ===========
 const fileInput = document.getElementById("fileInput");
@@ -133,6 +150,7 @@ uploadBtn?.addEventListener("click", () => {
     setTimeout(() => {
         statusMessage.textContent = "Upload Successful!";
         preview.classList.add("uploaded");
+        fileInput.value = ""; // Reset input
     }, 2000); // Simulated Upload Delay
 });
 
