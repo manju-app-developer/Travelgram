@@ -12,7 +12,7 @@
             <h2>User Profile</h2>
             <button id="themeToggle">🌙</button> <!-- Dark/Light Mode Toggle -->
         </div>
-        
+
         <div class="profile-card">
             <label for="profilePicUpload">
                 <img id="profilePic" src="default.png" alt="Profile Picture" width="120">
@@ -31,16 +31,39 @@
 
     <script type="module" src="js/profile.js"></script>
     <script>
-        // Dark Mode Toggle
-        document.getElementById("themeToggle").addEventListener("click", () => {
-            document.body.classList.toggle("dark-mode");
-            localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
-        });
+        document.addEventListener("DOMContentLoaded", () => {
+            // === Dark Mode Handling ===
+            const themeToggle = document.getElementById("themeToggle");
+            const isDarkMode = localStorage.getItem("theme") === "dark";
+            document.body.classList.toggle("dark-mode", isDarkMode);
+            themeToggle.innerHTML = isDarkMode ? "☀️" : "🌙";
 
-        // Load Theme from Local Storage
-        if (localStorage.getItem("theme") === "dark") {
-            document.body.classList.add("dark-mode");
-        }
+            themeToggle.addEventListener("click", () => {
+                const isDark = document.body.classList.toggle("dark-mode");
+                localStorage.setItem("theme", isDark ? "dark" : "light");
+                themeToggle.innerHTML = isDark ? "☀️" : "🌙";
+            });
+
+            // === Profile Picture Handling ===
+            const profilePic = document.getElementById("profilePic");
+            const profilePicUpload = document.getElementById("profilePicUpload");
+
+            // Load stored profile pic
+            const savedProfilePic = localStorage.getItem("profilePic");
+            if (savedProfilePic) profilePic.src = savedProfilePic;
+
+            profilePicUpload.addEventListener("change", (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        profilePic.src = e.target.result;
+                        localStorage.setItem("profilePic", e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
     </script>
 </body>
 </html>
