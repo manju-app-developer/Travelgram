@@ -1,84 +1,58 @@
-// ======== USER PROFILE PAGE ========
-import { 
-    getAuth, onAuthStateChanged, signOut, updateProfile 
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { app } from "../firebase/firebase-config.js"; // Firebase config
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { app } from "../firebase/firebase-config.js";
 
 const auth = getAuth(app);
 
-// Get DOM Elements
-const userName = document.getElementById("userName");
-const userEmail = document.getElementById("userEmail");
-const profilePic = document.getElementById("profilePic");
-const editNameInput = document.getElementById("editName");
-const editNameBtn = document.getElementById("editNameBtn");
-const profilePicUpload = document.getElementById("profilePicUpload");
-const changeProfilePicBtn = document.getElementById("changeProfilePic");
-const logoutBtn = document.getElementById("logout");
+document.addEventListener("DOMContentLoaded", () => {
+    const userName = document.getElementById("userName");
+    const userEmail = document.getElementById("userEmail");
+    const editName = document.getElementById("editName");
+    const editNameBtn = document.getElementById("editNameBtn");
+    const logoutBtn = document.getElementById("logout");
 
-// ======= CHECK IF USER IS LOGGED IN =======
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        // Display user details
-        userName.textContent = user.displayName || "No Name";
-        userEmail.textContent = user.email;
-        profilePic.src = user.photoURL || "default.png"; // Default if no photo
-    } else {
-        window.location.href = "login.html"; // Redirect if not logged in
-    }
-});
+    // Check authentication state
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            userName.textContent = user.displayName || "No Name Set";
+            userEmail.textContent = user.email;
 
-// ======= EDIT USERNAME =======
-editNameBtn.addEventListener("click", async () => {
-    const newName = editNameInput.value.trim();
-    if (newName === "") {
-        alert("Name cannot be empty!");
-        return;
-    }
-
-    try {
-        await updateProfile(auth.currentUser, { displayName: newName });
-        userName.textContent = newName;
-        editNameInput.value = "";
-        alert("Name updated successfully!");
-    } catch (error) {
-        console.error("Error updating name:", error.message);
-        alert("Failed to update name!");
-    }
-});
-
-// ======= PROFILE PICTURE UPLOAD =======
-changeProfilePicBtn.addEventListener("click", () => {
-    profilePicUpload.click();
-});
-
-profilePicUpload.addEventListener("change", async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-        try {
-            await updateProfile(auth.currentUser, { photoURL: e.target.result });
-            profilePic.src = e.target.result;
-            alert("Profile picture updated!");
-        } catch (error) {
-            console.error("Error updating profile picture:", error.message);
-            alert("Failed to update profile picture!");
+            // Allow name editing
+            editNameBtn.addEventListener("click", () => {
+                if (editName.style.display === "none") {
+                    editName.style.display = "block";
+                    editName.value = user.displayName || "";
+                    editName.focus();
+                } else {
+                    const newName = editName.value.trim();
+                    if (newName) {
+                        userName.textContent = newName;
+                        editName.style.display = "none";
+                        localStorage.setItem("userName", newName); // Save locally
+                    }
+                }
+            });
+        } else {
+            // Redirect to login if not authenticated
+            window.location.href = "login.html";
         }
-    };
-    reader.readAsDataURL(file);
-});
+    });
 
-// ======= LOGOUT FUNCTION =======
-logoutBtn.addEventListener("click", async () => {
-    const confirmLogout = confirm("Are you sure you want to logout?");
-    if (!confirmLogout) return;
+    // Logout Function
+    logoutBtn.addEventListener("click", async () => {
+        try {
+            await signOut(auth);
+            localStorage.removeItem("userName");
+            localStorage.removeItem("profilePic");
+            window.location.href = "login.html";
+        } catch (error) {
+            console.error("Logout Error:", error.message);
+            alert("Error logging out. Please try again.");
+        }
+    });
 
-    try {
-        await signOut(auth);
-        window.location.href = "login.html"; // Redirect to login page
-    } catch (error) {
-        console.error("Logout error:", error.message);
+    // Load stored name
+    const storedName = localStorage.getItem("userName");
+    if (storedName) {
+        userName.textContent = storedName;
     }
 });
