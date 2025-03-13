@@ -4,37 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travelgram - Explore the World</title>
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/darkmode.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Scripts -->
     <script src="js/script.js" defer></script>
 </head>
 <body>
 
-    <!-- Navbar -->
+    <!-- ======= Navbar ======= -->
     <header>
         <nav class="navbar">
             <div class="logo">🌍 Travelgram</div>
+            
             <div class="search-bar">
                 <input type="text" placeholder="Search destinations..." id="searchInput">
-                <button id="searchBtn">🔍</button>
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
             </div>
+
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="upload.html">Upload</a></li>
-                <li><button id="darkModeToggle">🌙</button></li>
+                <li><button id="darkModeToggle"><i class="fas fa-moon"></i></button></li>
                 <li class="profile-dropdown">
                     <img src="images/profile-icon.png" alt="Profile" class="profile-icon">
                     <ul class="dropdown-menu">
-                        <li><a href="profile.html">My Profile</a></li>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="signup.html">Sign Up</a></li>
+                        <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
+                        <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                        <li><a href="signup.html"><i class="fas fa-user-plus"></i> Sign Up</a></li>
                     </ul>
                 </li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section with Slideshow -->
+    <!-- ======= Hero Section with Slideshow ======= -->
     <section class="hero">
         <div class="slideshow">
             <img src="images/travel1.jpg" class="slide active">
@@ -44,45 +56,47 @@
         <div class="hero-content">
             <h1>Discover & Share Your Travel Stories</h1>
             <p>Explore breathtaking destinations, connect with travelers, and share your journey.</p>
-            <a href="upload.html" class="btn">Upload Your Story</a>
+            <a href="upload.html" class="btn-primary">Upload Your Story</a>
         </div>
     </section>
 
-    <!-- Featured Travel Posts -->
+    <!-- ======= Featured Travel Posts ======= -->
     <section class="featured-posts">
         <h2>🌟 Featured Travel Stories</h2>
         <div class="posts-container">
             <div class="post-card">
-                <img src="images/maldives.jpeg" alt="Beautiful Beach Getaway">
+                <img src="images/maldives.jpeg" alt="Maldives">
                 <div class="post-info">
                     <h3>Beautiful Beach Getaway</h3>
                     <p>Experience the serenity of the Maldives.</p>
-                    <button class="like-btn">❤️ Like</button>
-                    <button class="bookmark-btn">🔖 Save</button>
+                    <button class="like-btn"><i class="fas fa-heart"></i> Like</button>
+                    <button class="bookmark-btn"><i class="fas fa-bookmark"></i> Save</button>
                 </div>
             </div>
+
             <div class="post-card">
-                <img src="images/swiss_alps.jpeg" alt="Hiking Adventures">
+                <img src="images/swiss_alps.jpeg" alt="Swiss Alps">
                 <div class="post-info">
                     <h3>Hiking Adventures</h3>
                     <p>Explore the breathtaking peaks of the Swiss Alps.</p>
-                    <button class="like-btn">❤️ Like</button>
-                    <button class="bookmark-btn">🔖 Save</button>
+                    <button class="like-btn"><i class="fas fa-heart"></i> Like</button>
+                    <button class="bookmark-btn"><i class="fas fa-bookmark"></i> Save</button>
                 </div>
             </div>
+
             <div class="post-card">
-                <img src="images/tokyo.jpeg" alt="City Lights & Urban Vibes">
+                <img src="images/tokyo.jpeg" alt="Tokyo">
                 <div class="post-info">
                     <h3>City Lights & Urban Vibes</h3>
                     <p>Unleash the magic of Tokyo nightlife.</p>
-                    <button class="like-btn">❤️ Like</button>
-                    <button class="bookmark-btn">🔖 Save</button>
+                    <button class="like-btn"><i class="fas fa-heart"></i> Like</button>
+                    <button class="bookmark-btn"><i class="fas fa-bookmark"></i> Save</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trending Destinations -->
+    <!-- ======= Trending Destinations ======= -->
     <section class="trending">
         <h2>🔥 Trending Destinations</h2>
         <div class="trending-container">
@@ -101,7 +115,7 @@
         </div>
     </section>
 
-    <!-- User Testimonials -->
+    <!-- ======= User Testimonials ======= -->
     <section class="testimonials">
         <h2>💬 What Travelers Say</h2>
         <div class="testimonial-container">
@@ -116,8 +130,21 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ======= Footer ======= -->
     <footer>
+        <div class="footer-content">
+            <div class="footer-logo">🌍 Travelgram</div>
+            <ul class="footer-links">
+                <li><a href="#">About</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
         <p>&copy; 2025 Travelgram | Built for explorers 🌍</p>
     </footer>
 
