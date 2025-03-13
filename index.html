@@ -3,61 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelGram - Explore Travel Photos</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <script defer src="assets/js/script.js"></script>
+    <title>Travelgram - Explore the World</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/darkmode.css">
+    <script src="js/script.js" defer></script>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Navbar -->
     <header>
-        <h1 class="logo">TravelGram</h1>
-        <nav>
+        <nav class="navbar">
+            <div class="logo">Travelgram</div>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="explore.html">Explore</a></li>
                 <li><a href="upload.html">Upload</a></li>
                 <li><a href="profile.html">Profile</a></li>
                 <li><a href="login.html">Login</a></li>
+                <li><button id="darkModeToggle">🌙</button></li>
             </ul>
-            <button class="menu-toggle">☰</button>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <h2>Discover & Share Breathtaking Travel Moments</h2>
-        <p>Join our community and showcase your best travel photos to the world.</p>
-        <a href="upload.html" class="btn primary">Upload Your Photo</a>
+        <div class="hero-content">
+            <h1>Discover & Share Your Travel Stories</h1>
+            <p>Join Travelgram to explore breathtaking destinations and connect with travelers worldwide.</p>
+            <a href="upload.html" class="btn">Upload Your Story</a>
+        </div>
     </section>
 
-    <!-- Search Bar -->
-    <div class="search-container">
-        <input type="text" placeholder="Search travel destinations...">
-        <button>Search</button>
-    </div>
-
-    <!-- Trending Photos -->
-    <section class="trending">
-        <h2>Trending Travel Photos</h2>
-        <div class="photo-grid">
-            <div class="photo-card">
-                <img src="assets/images/photo1.jpg" alt="Beach in Bali">
-                <p>Beautiful Beach in Bali</p>
+    <!-- Featured Travel Posts -->
+    <section class="featured-posts">
+        <h2>Featured Travel Stories</h2>
+        <div class="posts-container">
+            <div class="post-card">
+                <img src="https://source.unsplash.com/400x250/?beach" alt="Beautiful Beach Getaway">
+                <div class="post-info">
+                    <h3>Beautiful Beach Getaway</h3>
+                    <p>Experience the serenity of the Maldives.</p>
+                    <button class="like-btn">❤️ Like</button>
+                </div>
             </div>
-            <div class="photo-card">
-                <img src="assets/images/photo2.jpg" alt="Switzerland Mountains">
-                <p>Snowy Mountains in Switzerland</p>
+            <div class="post-card">
+                <img src="https://source.unsplash.com/400x250/?hiking" alt="Hiking Adventures">
+                <div class="post-info">
+                    <h3>Hiking Adventures</h3>
+                    <p>Explore the scenic beauty of Kappat Hills, Gadag.</p>
+                    <button class="like-btn">❤️ Like</button>
+                </div>
             </div>
-            <div class="photo-card">
-                <img src="assets/images/photo3.jpg" alt="Tokyo at Night">
-                <p>Tokyo at Night</p>
+            <div class="post-card">
+                <img src="https://source.unsplash.com/400x250/?city" alt="City Lights & Urban Vibes">
+                <div class="post-info">
+                    <h3>City Lights & Urban Vibes</h3>
+                    <p>Unleash the magic of New York City.</p>
+                    <button class="like-btn">❤️ Like</button>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 TravelGram. All rights reserved.</p>
+        <p>&copy; 2025 Travelgram | Built for explorers 🌍</p>
     </footer>
 </body>
 </html>
