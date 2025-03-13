@@ -3,12 +3,19 @@
 import { 
     getAuth, createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, signInWithPopup, 
-    GoogleAuthProvider, signOut, onAuthStateChanged 
+    GoogleAuthProvider, signOut, onAuthStateChanged, 
+    setPersistence, browserLocalPersistence 
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
 import { app } from "../firebase/firebase-config.js"; // Firebase app instance
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+
+// ======= Enable Session Persistence =======
+setPersistence(auth, browserLocalPersistence).catch((error) => {
+    console.error("Persistence error:", error.message);
+});
 
 // ======= Utility Functions =======
 const showLoading = (button) => {
@@ -20,6 +27,21 @@ const hideLoading = (button, text) => {
     button.disabled = false;
     button.innerHTML = text;
 };
+
+/** 🔄 Map Firebase Auth Errors */
+function mapAuthError(errorCode) {
+    const errors = {
+        "auth/email-already-in-use": "This email is already in use. Try logging in.",
+        "auth/invalid-email": "Invalid email format. Please check again.",
+        "auth/weak-password": "Password is too weak. Try a stronger one.",
+        "auth/user-not-found": "No user found with this email.",
+        "auth/wrong-password": "Incorrect password. Please try again.",
+        "auth/popup-closed-by-user": "Google sign-in was canceled.",
+        "auth/network-request-failed": "Network error. Check your internet connection.",
+        "auth/too-many-requests": "Too many failed attempts. Try again later.",
+    };
+    return errors[errorCode] || "An unknown error occurred.";
+}
 
 // ======= SIGN UP =======
 document.getElementById("signupForm")?.addEventListener("submit", async (e) => {
@@ -63,7 +85,7 @@ document.getElementById("loginForm")?.addEventListener("submit", async (e) => {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         console.log("Login successful:", userCredential.user);
         localStorage.setItem("user", JSON.stringify(userCredential.user));
-        window.location.href = "profile.html"; // Redirect to profile page
+        window.location.href = "dashboard.html"; // Redirect to dashboard
     } catch (error) {
         console.error("Login error:", error.message);
         alert(mapAuthError(error.code));
@@ -81,7 +103,7 @@ document.getElementById("googleLogin")?.addEventListener("click", async () => {
         const result = await signInWithPopup(auth, provider);
         console.log("Google Sign-In successful:", result.user);
         localStorage.setItem("user", JSON.stringify(result.user));
-        window.location.href = "profile.html"; // Redirect to profile page
+        window.location.href = "dashboard.html"; // Redirect to dashboard
     } catch (error) {
         console.error("Google Login error:", error.message);
         alert(mapAuthError(error.code));
@@ -102,28 +124,25 @@ document.getElementById("logout")?.addEventListener("click", async () => {
     }
 });
 
-// ======= AUTO-REDIRECT IF ALREADY LOGGED IN =======
+// ======= AUTO-REDIRECT IF LOGGED IN =======
 onAuthStateChanged(auth, (user) => {
     if (user) {
         localStorage.setItem("user", JSON.stringify(user));
         if (window.location.pathname.includes("login.html") || window.location.pathname.includes("signup.html")) {
-            window.location.href = "profile.html"; // Redirect logged-in users
+            window.location.href = "dashboard.html"; // Redirect logged-in users
         }
     } else {
         localStorage.removeItem("user");
     }
 });
 
-// ======= ERROR MESSAGE MAPPER =======
-function mapAuthError(errorCode) {
-    const errors = {
-        "auth/email-already-in-use": "This email is already in use. Try logging in.",
-        "auth/invalid-email": "Invalid email format. Please check again.",
-        "auth/weak-password": "Password is too weak. Try a stronger one.",
-        "auth/user-not-found": "No user found with this email.",
-        "auth/wrong-password": "Incorrect password. Please try again.",
-        "auth/popup-closed-by-user": "Google sign-in was canceled.",
-        "auth/network-request-failed": "Network error. Check your internet connection.",
-    };
-    return errors[errorCode] || "An unknown error occurred.";
+// ======= CHECK ADMIN ROLE (For Future Use) =======
+export async function isAdmin(user) {
+    try {
+        const tokenResult = await user.getIdTokenResult();
+        return tokenResult.claims.admin === true;
+    } catch (error) {
+        console.error("Admin check failed:", error.message);
+        return false;
+    }
 }
