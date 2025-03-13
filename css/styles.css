@@ -1,0 +1,221 @@
+/* ======= Super Advanced Global Styles ======= */
+:root {
+    --primary-color: #e1306c; /* Instagram pink */
+    --secondary-color: #fdc830; /* Yellowish */
+    --bg-light: #f8f9fa;
+    --bg-dark: #121212;
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --border-radius: 12px;
+    --transition: all 0.3s ease-in-out;
+    --shadow-light: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    --shadow-dark: 0px 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* ======= Global Reset ======= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* ======= Body Styles ======= */
+body {
+    background: var(--bg-light);
+    color: #333;
+    transition: var(--transition);
+}
+
+/* ======= Dark Mode Styles ======= */
+body.dark-mode {
+    background: var(--bg-dark);
+    color: #fff;
+}
+
+/* ======= Glassmorphism UI ======= */
+.container {
+    width: 90%;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    transition: var(--transition);
+}
+
+body.dark-mode .container {
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: var(--shadow-dark);
+}
+
+/* ======= Instagram-Like Card ======= */
+.card {
+    width: 100%;
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin: 15px 0;
+    box-shadow: var(--shadow-light);
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .card {
+    background: #1e1e1e;
+}
+
+/* ======= Profile Image Styling ======= */
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+}
+
+/* ======= Neumorphic Button ======= */
+button {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2), 
+                -4px -4px 8px rgba(255, 255, 255, 0.1);
+}
+
+button:hover {
+    background: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3), 
+                -6px -6px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* ======= Instagram-Style Like Button ======= */
+.like-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #e1306c;
+    background: rgba(225, 48, 108, 0.1);
+    border: none;
+    border-radius: 50px;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.like-btn:hover {
+    background: #e1306c;
+    color: white;
+}
+
+.like-btn.liked {
+    background: #e1306c;
+    color: white;
+}
+
+/* ======= Animated Inputs ======= */
+input {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    transition: var(--transition);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ======= Scroll To Top Button ======= */
+#scrollTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-light);
+    transition: var(--transition);
+}
+
+#scrollTop:hover {
+    background: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+/* ======= Mobile-Friendly Navbar Toggle ======= */
+.menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background: var(--glass-bg);
+    padding: 20px;
+    position: absolute;
+    width: 100%;
+    top: 60px;
+    left: 0;
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+}
+
+.menu.active {
+    display: flex;
+}
+
+/* ======= Dark Mode Toggle Button ======= */
+.dark-mode-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.dark-mode-toggle:hover {
+    color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+/* ======= Responsive Design ======= */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    button {
+        padding: 12px;
+    }
+}
